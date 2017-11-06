@@ -4,6 +4,9 @@
 .idea/*
 .idea/libraries/sass_stdlib.xml
 
+# Rope
+.ropeproject/
+
 # C extensions
 *.so
 
