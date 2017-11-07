@@ -117,10 +117,13 @@ class Bouncer(object):
 
     def check_authorization(self, response):
         """checks that an authorization call has been made during the request"""
+        bad_auth = self.app.handle_http_exception(Unauthorized())[0]
+        bad_auth.status = "401 Unauthorized"
+
         if not hasattr(request, '_authorized'):
-            return self.app.handle_exception(Unauthorized())
+            return bad_auth
         elif not request._authorized:
-            return self.app.handle_exception(Unauthorized())
+            return bad_auth
         return response
 
     def check_implicit_rules(self):
