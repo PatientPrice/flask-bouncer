@@ -118,9 +118,9 @@ class Bouncer(object):
     def check_authorization(self, response):
         """checks that an authorization call has been made during the request"""
         if not hasattr(request, '_authorized'):
-            self.app.handle_http_exception(Unauthorized())
+            return self.app.handle_http_exception(Unauthorized())
         elif not request._authorized:
-            self.app.handle_http_exception(Unauthorized())
+            return self.app.handle_http_exception(Unauthorized())
         return response
 
     def check_implicit_rules(self):
